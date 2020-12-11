@@ -1,4 +1,9 @@
+USER=./user/
+SYS=./sys/
+CC=gcc
+FLAG=-I./include/
+
 shell:
-	gcc disk.c fs.c shell.c -o sh
+	$(CC) $(USER)shell.c $(SYS)fs.c $(SYS)disk.c -o $(USER)sh $(FLAG)
 	clear
 	@./sh
