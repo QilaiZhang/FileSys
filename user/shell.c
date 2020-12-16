@@ -4,7 +4,7 @@
 #include <sys/types.h>
 #include <sys/wait.h>
 #include <unistd.h>
-#include "user.h"
+#include "fs.h"
 
 #define MAXBUF 500
 #define MAXARGS 10
@@ -58,11 +58,14 @@ void runcmd(char **argv, int argc)
 int main(){
 
     int argc;
+
+    fs_init();
+
     while(1){
         getcmd(buf);
         argc = parsecmd(buf, argv);
         if(strcmp(argv[0], "shutdown") == 0){
-            printf("File System shutdown!\n\n");
+            printf("Bye~\n");
             exit(0);
         }
 

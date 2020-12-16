@@ -1,16 +1,16 @@
 #include "disk.h"
-
 #include <stdio.h>
 
 inline int get_disk_size()
 {
-    return 4*1024*1024; 
+    return 4*1024*1024;
 }
 
 static FILE* disk;
 
 static int create_disk()
 {
+    printf("No disk exist. ");
     FILE* tmp = fopen("disk","w");
     for(int i = 0; i < get_disk_size(); i++){
         fputc(0,tmp);
