@@ -3,7 +3,18 @@ SYS=./sys/
 CC=gcc
 FLAG=-I./include/
 
-shell:
-	$(CC) $(USER)shell.c $(SYS)fs.c $(SYS)disk.c -o $(USER)sh $(FLAG)
+SRC=\
+	hello\
+
+TARGETLIST:=$(patsubst %.c,%,$(SRC))
+
+all:
+	for file in $(SRC); do\
+		gcc $(USER)$$file.c -o $(USER)_$$file;\
+	done
+	$(CC) $(USER)shell.c $(SYS)fs.c $(SYS)disk.c -o $(USER)_sh $(FLAG)
 	clear
-	@./sh
+	@$(USER)_sh
+
+clean:
+	rm $(foreach f, $(SRC), $(USER)_$(f)) $(USER)_sh

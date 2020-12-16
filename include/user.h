@@ -1,9 +1,9 @@
-int open(const char*, int);
+int my_open(const char*, int);
 
-int close(int);
+int my_close(int);
 
-int read(int, void*, int);
+int my_read(int, void*, int);
 
-int write(int, const void*, int);
+int my_write(int, const void*, int);
 
-int mkdir(const char*);
+int my_mkdir(const char*);
