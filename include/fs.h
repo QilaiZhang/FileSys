@@ -4,8 +4,8 @@
 #define MAGIC_NUM 0xdec0de
 #define MAX_BLOCK_NUM 4096
 #define MAX_INODE_NUM 1024
+#define MAX_DIR_DEPTH 10
 
-#define O_CREATE 0
 
 #define TYPE_FILE 0
 #define TYPE_DIR 1
@@ -33,13 +33,7 @@ typedef struct dir_item {
     uint16_t valid;
     uint8_t type;
     char name[121];
-}Dir;
-
-typedef struct my_file{
-    Inode inode;
-    char buf[FS_BLOCKSIZE];
-    int ptr;
-}Mfile;
+}Dir_item;
 
 typedef struct inode_buf{
     int block;
@@ -49,12 +43,8 @@ typedef struct inode_buf{
 
 void fs_init();
 
-Mfile* fs_open(const char* filename, int flag);
+int fs_create(const char* filename, int flag);
 
-int fs_close(Mfile* fd);
+int fs_read(const char* filename, char *buf, int flag);
 
-int fs_read(Mfile* fd, void* buf, int n);
-
-int fs_write(Mfile* fd, const void* buf, int n);
-
-int fs_mkdir(const char* dirname);
+int fs_write(const char* filename, char * buf, int size);
