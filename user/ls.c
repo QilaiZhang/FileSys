@@ -40,8 +40,15 @@ int main(int argc,char **argv){
         exit(0);
     }
 
+    if(argc == 2){
+        ls(argv[1], buf);
+        exit(0);
+    }
+
     for(int i=1; i < argc; i++){
+        printf("%s:\n",argv[i]);
         ls(argv[i], buf);
+        printf("\n");
     }
 
     exit(0);
